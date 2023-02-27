@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JsonObjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('/objects', function () {
-   return view('objects/show');
-});
+Route::get('/objects', [JsonObjectController::class, 'index'])->name('objects.show');
+Route::get('/objects/create', [JsonObjectController::class, 'create'])->name('objects.create');

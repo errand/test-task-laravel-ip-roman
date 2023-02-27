@@ -13,7 +13,10 @@ class JsonObjectController extends Controller
      */
     public function index()
     {
-        //
+        $objects = JsonObject::all();
+        return view('objects/index', [
+            'objects' => $objects,
+        ]);
     }
 
     /**
@@ -21,7 +24,7 @@ class JsonObjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('objects/create');
     }
 
     /**
