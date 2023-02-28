@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JsonObject;
 use App\Http\Requests\StoreJsonObjectRequest;
 use App\Http\Requests\UpdateJsonObjectRequest;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class JsonObjectController extends Controller
 {
@@ -32,7 +33,32 @@ class JsonObjectController extends Controller
      */
     public function store(StoreJsonObjectRequest $request)
     {
-        //
+        $memory = memory_get_usage();
+        $usage_start = microtime(true);
+
+        $validated = $request->validated();
+        $userToken = PersonalAccessToken::findToken($request->header('X-Header-Token'));
+
+        $user = $userToken->tokenable;
+
+        $object = new JsonObject([
+            'data' => $validated['data'],
+            'user_id' => $user->id,
+        ]);
+
+        $object->save();
+
+        $memory_used = (memory_get_usage() - $memory) / 1024;
+        $time_used = (microtime(true) - $usage_start);
+
+        return response()->json([
+            'object_id' => $object->id,
+            'memory_used' => floor($memory_used / 1024),
+            'time_used' => $time_used,
+        ]);
+
+
+
     }
 
     /**

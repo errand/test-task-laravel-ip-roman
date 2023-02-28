@@ -18,5 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/objects', [JsonObjectController::class, 'index'])->name('objects.show');
+Route::get('/objects', [JsonObjectController::class, 'index'])->name('objects.index');
 Route::get('/objects/create', [JsonObjectController::class, 'create'])->name('objects.create');
+
+Route::get('/objects/create/store', [JsonObjectController::class, 'store'])->name('objects.store');
+Route::post('/objects/create/store', [JsonObjectController::class, 'store'])->name('objects.store');
+
+Route::get('/objects/edit/{$id}', [JsonObjectController::class, 'edit'])->name('objects.edit');

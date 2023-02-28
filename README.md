@@ -7,3 +7,6 @@ This the implementation of the task for the position [Junior/Middle Backend deve
 ## Stack
 - Latest Laravel (v10)
 - SQLite
+
+To prune user tokens on the production the [cron](https://laravel.com/docs/10.x/scheduling#scheduling-artisan-commands) 
+must be setup, on development use `php artisan schedule:work` command

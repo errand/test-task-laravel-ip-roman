@@ -10,10 +10,21 @@
             </div>
         @endif
 
-        @if (count($objects))
+        @if (count($objects) > 0)
+            <table class="border-separate border-spacing-2 border border-slate-500">
+                <tr>
+                    <th class="border">ID</th>
+                    <th class="border">Created at</th>
+                    <th class="border">Actions</th>
+                </tr>
             @foreach($objects as $object)
-                {{ $object->data  }}
+                <tr>
+                    <td class="border">{{ $object->id  }}</td>
+                    <td class="border">{{ $object->created_at  }}</td>
+                    <td class="border"><a href="{{route('objects.edit', $object->id)}}">Edit</a></td>
+                </tr>
             @endforeach
+            </table>
         @else
             No object found
         @endif
