@@ -13,11 +13,12 @@ object_form.addEventListener('submit', ev => {
 async function submitObjectForm() {
 
     const token = document.getElementById('user_token').value;
+    const textarea = document.getElementById('data').value;
     document.getElementById('user_token').value = '';
     document.getElementById('data').value = '';
 
     const body = object_form.method === 'post' ?  JSON.stringify({
-        'data': document.getElementById('data').value
+        'data': textarea
     }) : null
 
 

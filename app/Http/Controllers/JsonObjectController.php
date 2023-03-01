@@ -56,25 +56,38 @@ class JsonObjectController extends Controller
             'memory_used' => floor($memory_used / 1024),
             'time_used' => $time_used,
         ]);
-
-
-
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(JsonObject $jsonObject)
+    public function json(int $id)
     {
-        //
+        $object = JsonObject::find($id);
+
+        return response()->json([
+            'object' => $object->data
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(int $id)
+    {
+        $object = JsonObject::find($id);
+
+        return view('objects.show', ['object_id' => json_encode($object->id)]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(JsonObject $jsonObject)
+    public function edit(int $id)
     {
-        //
+        $object = JsonObject::find($id);
+
+        return view('objects.edit', ['object_id' => $object->id]);
     }
 
     /**

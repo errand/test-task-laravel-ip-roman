@@ -21,7 +21,9 @@ Route::get('/', function () {
 Route::get('/objects', [JsonObjectController::class, 'index'])->name('objects.index');
 Route::get('/objects/create', [JsonObjectController::class, 'create'])->name('objects.create');
 
-Route::get('/objects/create/store', [JsonObjectController::class, 'store'])->name('objects.store');
-Route::post('/objects/create/store', [JsonObjectController::class, 'store'])->name('objects.store');
+Route::match(['get', 'post'], '/objects/create/store', [JsonObjectController::class, 'store'])->name('objects.store');
 
-Route::get('/objects/edit/{$id}', [JsonObjectController::class, 'edit'])->name('objects.edit');
+Route::get('/objects/{id}', [JsonObjectController::class, 'show'])->name('objects.show');
+Route::get('/objects/{id}/edit', [JsonObjectController::class, 'edit'])->name('objects.edit');
+
+Route::get('/objects/{id}/json', [JsonObjectController::class, 'json']);
