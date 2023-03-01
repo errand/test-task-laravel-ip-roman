@@ -21,6 +21,7 @@
                 <tr>
                     <td class="border">{{ $object->id  }}</td>
                     <td class="border">{{ $object->created_at  }}</td>
+                    <td class="border"><a href="{{route('objects.show', $object->id)}}">View</a></td>
                     <td class="border"><a href="{{route('objects.edit', $object->id)}}">Edit</a></td>
                 </tr>
             @endforeach

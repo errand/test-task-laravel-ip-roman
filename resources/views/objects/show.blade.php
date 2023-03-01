@@ -4,10 +4,15 @@
 
 @section('content')
     <div class="flex flex-col items-center max-w-screen-sm mx-auto">
+        <h1 class="text-gray-500 text-3xl pt-6 mb-6">{{ __('View JSON Object') }}</h1>
+
         <div id="status">
 
         </div>
-        <h1 class="text-gray-500 font-xl pt-6 mb-6">{{ __('Add JSON Object') }}</h1>
+
+        <div class="pt-6">
+            <a href="{{route('objects.edit', $object_id)}}">{{ __('Edit') }}</a>
+        </div>
 
     </div>
 @endsection
@@ -18,7 +23,7 @@
             try {
                 const data = await response.json();
                 const obj = await JSON.parse(data.object);
-                return obj.data;
+                return obj.data[0];
 
             } catch (e) {
                 console.log(e)
@@ -30,15 +35,13 @@
             let output = "";
             Object.keys(obj).forEach(function(k) {
                 if (typeof obj[k] == "object" && obj[k] !== null){
-                        output += "<li>" + k + "<ul>";
+                        output += "<li class='toggler'><details><summary>" + k + "</summary><ul class='ml-4'>";
                         output += createHtmlList(obj[k]);
-                        output += "</ul></li>";
+                        output += "</ul></details></li>";
                 } else {
                     output += "<li>" + k + " : " + obj[k] + "</li>";
                 }
             });
-
-            console.log(output)
             return output;
         }
 
