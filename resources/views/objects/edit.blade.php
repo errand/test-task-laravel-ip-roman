@@ -9,7 +9,7 @@
         </div>
         <h1 class="text-gray-500 text-3xl pt-6 mb-6">{{ __('Add JSON Object') }}</h1>
 
-        <form id="object_form" action="" class="w-full" method="POST">
+        <form id="object_form" action="{{ route('objects.update') }}" class="w-full" method="POST">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <select id="form_method" name="form_method" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
@@ -35,5 +35,5 @@ $data->list->sublist[1] = 2;
     </div>
 @endsection
 @push('scripts')
-    <script src="{{ Vite::asset('resources/js/method_select.js') }}"></script>
+    <script src="{{ Vite::asset('resources/js/objectCreate.js') }}"></script>
 @endpush

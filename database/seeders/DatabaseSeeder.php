@@ -19,5 +19,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'editor@test.test',
             'password' => '$2y$10$3nBNTMKmqmlGOpnMwNhybeldWRw6Jb5fAWBtzMy7ni/1NXNnPJBZ.', // asdfasdf
         ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'tester',
+            'email' => 'test@test.test',
+            'password' => '$2y$10$3nBNTMKmqmlGOpnMwNhybeldWRw6Jb5fAWBtzMy7ni/1NXNnPJBZ.', // asdfasdf
+        ]);
     }
 }

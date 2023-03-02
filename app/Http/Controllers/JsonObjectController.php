@@ -52,6 +52,8 @@ class JsonObjectController extends Controller
         $time_used = (microtime(true) - $usage_start);
 
         return response()->json([
+            'code' => 200,
+            'message' => 'Success',
             'object_id' => $object->id,
             'memory_used' => floor($memory_used / 1024),
             'time_used' => $time_used,
@@ -83,19 +85,46 @@ class JsonObjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(int $id)
+    public function edit()
     {
-        $object = JsonObject::find($id);
-
-        return view('objects.edit', ['object_id' => $object->id]);
+        return view('objects.edit');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateJsonObjectRequest $request, JsonObject $jsonObject)
+    public function update(UpdateJsonObjectRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $userToken = PersonalAccessToken::findToken($request->header('X-Header-Token'));
+
+        $user = $userToken->tokenable;
+        $object = JsonObject::find($validated['id']);
+
+        if ($user->id !== $object->user_id) {
+            return response()->json([
+                'code' => 401,
+                'message' => "You are not authorize to edit this Object"
+            ]);
+        }
+
+        $json = $object->data;
+        $rows = explode(';', $validated['data']);
+
+        foreach ($rows as $row) {
+            $row = explode(' = ', $row);
+            $json->$row[0] = $row[1];
+        }
+
+        $object->data = $json;
+        $object->save();
+
+        return response()->json([
+            'code' => 200,
+            'action' => 'update',
+            'message' => 'Object updated successfully',
+            'object' => json_encode($object->data)
+        ]);
     }
 
     /**

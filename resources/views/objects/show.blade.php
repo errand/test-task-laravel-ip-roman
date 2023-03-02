@@ -11,7 +11,7 @@
         </div>
 
         <div class="pt-6">
-            <a href="{{route('objects.edit', $object_id)}}">{{ __('Edit') }}</a>
+            <a href="{{route('objects.edit')}}">{{ __('Edit') }}</a>
         </div>
 
     </div>
@@ -23,7 +23,7 @@
             try {
                 const data = await response.json();
                 const obj = await JSON.parse(data.object);
-                return obj.data[0];
+                return obj;
 
             } catch (e) {
                 console.log(e)

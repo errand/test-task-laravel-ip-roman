@@ -29,5 +29,5 @@
     </div>
 @endsection
 @push('scripts')
-    <script src="{{ Vite::asset('resources/js/method_select.js') }}"></script>
+    <script src="{{ Vite::asset('resources/js/objectCreate.js') }}"></script>
 @endpush
