@@ -127,11 +127,26 @@ class JsonObjectController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(JsonObject $jsonObject)
+
+    public function get( $path, $data )
     {
-        //
+        $path   = explode('->', $path);
+        $result =& $data;
+
+        foreach( $path as $value ) {
+            $result =& $result->{$value};
+        }
+        return $result;
+    }
+
+    public function set( $path, &$data, $value=null ) {
+        $path = explode( '->', $path );
+        $result =& $data;
+
+        foreach( $path as $key ) {
+            $result =& $result->{$key};
+        }
+
+        $result = $value;
     }
 }
