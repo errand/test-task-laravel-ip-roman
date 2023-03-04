@@ -30,7 +30,6 @@
             }
         }
 
-
         function createHtmlList(obj){
             let output = "";
             Object.keys(obj).forEach(function(k) {
@@ -44,7 +43,6 @@
             });
             return output;
         }
-
 
         (async () => {
             const obj = await parseJsonObject();

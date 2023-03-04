@@ -2,7 +2,7 @@
 
 ## Project
 
-This the implementation of the task for the position [Junior/Middle Backend developer](https://docs.google.com/document/d/1jUofI2dRnNfPWhsz2mQ9TwG8nafTD5YghNRwY4QXumE/view).
+This the implementation of the task for the position [Junior/Middle Backend developer](https://docs.google.com/document/d/1cxMd9c_LsXKr2SJ8jMhO03vEZQBDvPLyZ0uzCkZSQCU).
 
 ## Stack
 - Latest Laravel (v10)
