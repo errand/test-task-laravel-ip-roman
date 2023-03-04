@@ -14,12 +14,17 @@ must be setup, on development use `php artisan schedule:work` command
 ## Testing
 - Clone repository
 - cd root folder
+- run `php artisan db:seed`
+- run `php artisan test`
+  
+To run the app locally 
 - run `php artisan serve`
 
 ### Testing routes
 - /objects (/)
 - /objects/create
 - /objects/edit
+- /objects/delete
 
 ## Token generation
 Use command `php artisan token:generate email password`
@@ -31,6 +36,6 @@ There are 2 test users:
 Active token for user 
 test@test.test : 15|0oxp31MO9tb9vcP9uY4qzMjyJHGFjQkNuqz9q6ZT
 
-The only Object created by test@test.test is ID = 39
+The only Object created by test@test.test is ID = 53
 
 

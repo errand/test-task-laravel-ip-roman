@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Add Json object')
+@section('title', 'Edit Json object')
 
 @section('content')
     <div class="flex flex-col items-center max-w-screen-sm mx-auto">
