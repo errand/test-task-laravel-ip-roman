@@ -7,7 +7,7 @@
         <div id="status">
 
         </div>
-        <h1 class="text-gray-500 font-xl pt-6 mb-6">{{ __('Add JSON Object') }}</h1>
+        <h1 class="text-gray-500 text-3xl pt-6 mb-6">{{ __('Add JSON Object') }}</h1>
 
         <form id="object_form" action="{{ route('objects.store') }}" class="w-full" method="POST">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -28,6 +28,3 @@
         </form>
     </div>
 @endsection
-@push('scripts')
-    <script src="{{ Vite::asset('resources/js/objectCreate.js') }}"></script>
-@endpush

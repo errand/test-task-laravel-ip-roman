@@ -11,7 +11,7 @@
         </div>
 
         <div class="pt-6">
-            <a href="{{route('objects.edit')}}">{{ __('Edit') }}</a>
+            <a href="{{route('objects.edit')}}">{{ __('Edit') }}</a> | <a href="/">Home</a>
         </div>
 
     </div>

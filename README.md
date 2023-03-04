@@ -10,3 +10,27 @@ This the implementation of the task for the position [Junior/Middle Backend deve
 
 To prune user tokens on the production the [cron](https://laravel.com/docs/10.x/scheduling#scheduling-artisan-commands) 
 must be setup, on development use `php artisan schedule:work` command
+
+## Testing
+- Clone repository
+- cd root folder
+- run `php artisan serve`
+
+### Testing routes
+- /objects (/)
+- /objects/create
+- /objects/edit
+
+## Token generation
+Use command `php artisan token:generate email password`
+
+There are 2 test users:
+- editor@test.test | asdfasdf (ID 1)
+- test@test.test | asdfasdf (ID 3)
+
+Active token for user 
+test@test.test : 15|0oxp31MO9tb9vcP9uY4qzMjyJHGFjQkNuqz9q6ZT
+
+The only Object created by test@test.test is ID = 39
+
+

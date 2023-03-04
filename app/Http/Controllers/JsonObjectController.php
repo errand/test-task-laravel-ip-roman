@@ -104,41 +104,39 @@ class JsonObjectController extends Controller
         if ($user->id !== $object->user_id) {
             return response()->json([
                 'code' => 401,
-                'message' => "You are not authorize to edit this Object"
+                'message' => 'You are not authorize to edit this Object',
             ]);
         }
 
         $json = $object->data;
-        $rows = explode(';', $validated['data']);
 
-        foreach ($rows as $row) {
-            $row = explode(' = ', $row);
-            $json->$row[0] = $row[1];
+        $parsed_data = json_decode($json);
+
+        $paths = str_replace("\n", "", $validated['data']);
+
+        $exploded_path = explode(';', $paths);
+
+        foreach (array_filter($exploded_path) as $path) {
+            $parts = explode(' = ', $path);
+            $this->set( $parts[0], $parsed_data->data[0], $parts[1] );
         }
 
-        $object->data = $json;
+        $object->data = json_encode($parsed_data);
         $object->save();
 
         return response()->json([
             'code' => 200,
             'action' => 'update',
             'message' => 'Object updated successfully',
-            'object' => json_encode($object->data)
         ]);
     }
 
-
-    public function get( $path, $data )
-    {
-        $path   = explode('->', $path);
-        $result =& $data;
-
-        foreach( $path as $value ) {
-            $result =& $result->{$value};
-        }
-        return $result;
-    }
-
+    /**
+     * Helper function for setting the params value in Json object
+     * @param $path
+     * @param $data
+     * @param null $value
+     */
     public function set( $path, &$data, $value=null ) {
         $path = explode( '->', $path );
         $result =& $data;
